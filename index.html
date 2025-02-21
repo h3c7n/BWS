@@ -9,21 +9,41 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/reviews.css">
+    <script src="js/mobile-menu.js" defer></script>
 </head>
 <body>
     <header class="header">
-        <div class="container">
-            <div class="header-content">
+        <div class="header-content container">
+            <a href="#" class="home-link">
                 <div class="logo">
                     <h1>Beauty Woman Stars</h1>
                 </div>
-                <nav class="nav-desktop">
-                    <a href="#sobre" class="nav-button">Sobre</a>
-                    <a href="#localizacao" class="nav-button">Localização</a>
-                    <a href="#reviews" class="nav-button">Avaliações</a>
-                    <a href="#contato" class="nav-button">Contato</a>
-                </nav>
-            </div>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-button" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop">
+                <a href="#sobre" class="nav-button modal-trigger" data-modal="sobreModal">Sobre</a>
+                <a href="#servicos" class="nav-button" onclick="window.location.href='treatments.html'">Serviços</a>
+                <a href="#localizacao" class="nav-button modal-trigger" data-modal="localizacaoModal">Localização</a>
+                <a href="#reviews" class="nav-button modal-trigger" data-modal="reviewsModal">Avaliações</a>
+            </nav>
+
+            <!-- Mobile Navigation -->
+            <nav class="nav-mobile">
+                <div class="nav-mobile-content">
+                    <a href="#sobre" class="nav-button modal-trigger" data-modal="sobreModal">Sobre</a>
+                    <a href="#servicos" class="nav-button" onclick="window.location.href='treatments.html'">Serviços</a>
+                    <a href="#localizacao" class="nav-button modal-trigger" data-modal="localizacaoModal">Localização</a>
+                    <a href="#reviews" class="nav-button modal-trigger" data-modal="reviewsModal">Avaliações</a>
+                </div>
+            </nav>
         </div>
     </header>
 
