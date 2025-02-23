@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (modal) {
                     modal.style.display = 'block';
                 }
+            } else if (this.getAttribute('href').includes('filhos-tela.html') || 
+                      this.getAttribute('href').includes('treatments.html')) {
+                // Allow direct navigation to these pages
+                return true;
+            } else if (this.getAttribute('href').startsWith('BWS-main/')) {
+                // Let the default navigation happen for project links
+                return true;
             } else {
                 e.preventDefault();
                 
