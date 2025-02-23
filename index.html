@@ -12,7 +12,7 @@
     <script src="js/mobile-menu.js" defer></script>
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="header-content container">
             <a href="#" class="home-link">
                 <div class="logo">
@@ -33,7 +33,6 @@
                 <a href="#servicos" class="nav-button" onclick="window.location.href='treatments.html'">Serviços</a>
                 <a href="#localizacao" class="nav-button modal-trigger" data-modal="localizacaoModal">Localização</a>
                 <a href="#reviews" class="nav-button modal-trigger" data-modal="reviewsModal">Avaliações</a>
-                <a href="project/filhos-tela.html" class="nav-button highlight">Experiência Digital</a>
             </nav>
 
             <!-- Mobile Navigation -->
@@ -43,7 +42,6 @@
                     <a href="#servicos" class="nav-button" onclick="window.location.href='treatments.html'">Serviços</a>
                     <a href="#localizacao" class="nav-button modal-trigger" data-modal="localizacaoModal">Localização</a>
                     <a href="#reviews" class="nav-button modal-trigger" data-modal="reviewsModal">Avaliações</a>
-                    <a href="project/filhos-tela.html" class="nav-button highlight">Experiência Digital</a>
                 </div>
             </nav>
         </div>
@@ -60,10 +58,10 @@
                 <h2>Seu Refúgio de Beleza e Bem-Estar em Porto Alegre Te Espera! ✨</h2>
                 <div class="about-intro">
                     <div class="about-image">
-                        <img src="./images/clinica.jpg"
+                        <img src="images/clinica.jpg"
                              alt="Beauty Woman Stars - Interior da Clínica" 
                              class="clinic-image"
-                             onerror="this.src='./images/placeholder.svg'">
+                             onerror="this.onerror=null; if(!this.src.includes('placeholder.svg')) this.src='images/placeholder.svg';">
                     </div>
                     <p>Na Beauty Woman Stars, acreditamos que a beleza autêntica irradia de dentro para fora. Mais do que uma clínica, somos o seu oásis particular em Porto Alegre, um espaço onde você se sente acolhida e cuidada em cada detalhe. Nosso propósito é realçar a sua beleza natural e nutrir o seu bem-estar interior, para que você brilhe em todas as áreas da sua vida.</p>
                     
@@ -175,10 +173,6 @@
                     <h3>Horário de Funcionamento</h3>
                     <p>Segunda à Sábado: 9h às 19h</p>
                 </div>
-            </div>
-            <div class="footer-partnership">
-                <h3>Parceria</h3>
-                <img src="./images/logo_prf.png" alt="Logo Polícia Rodoviária Federal" class="partner-logo">
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Beauty Woman Stars. Todos os direitos reservados.</p>
