@@ -99,3 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => console.log('clinica.jpg encontrado'))
         .catch(error => console.error('Erro ao carregar clinica.jpg:', error));
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const img = document.querySelector('.clinic-image');
+    if (img) {
+        // Update image paths to use absolute paths from root
+        img.setAttribute('data-src', '/images/clinica.jpg');
+        img.addEventListener('error', function() {
+            if (this.src !== '/images/placeholder.svg') {
+                this.src = '/images/placeholder.svg';
+            }
+        });
+    }
+});
