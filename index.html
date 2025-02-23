@@ -14,12 +14,15 @@
 <body>
     <header class="header">
         <div class="header-content container">
+            <div class="header-left">
             <a href="#" class="home-link">
                 <div class="logo">
-                    <h1>Beauty Woman Stars</h1>
+                <h1>Beauty Woman Stars</h1>
                 </div>
             </a>
+            </div>
 
+            <div class="header-right">
             <!-- Mobile Menu Button -->
             <button class="mobile-menu-button" aria-label="Menu">
                 <span></span>
@@ -38,12 +41,13 @@
             <!-- Mobile Navigation -->
             <nav class="nav-mobile">
                 <div class="nav-mobile-content">
-                    <a href="#sobre" class="nav-button modal-trigger" data-modal="sobreModal">Sobre</a>
-                    <a href="#servicos" class="nav-button" onclick="window.location.href='treatments.html'">Serviços</a>
-                    <a href="#localizacao" class="nav-button modal-trigger" data-modal="localizacaoModal">Localização</a>
-                    <a href="#reviews" class="nav-button modal-trigger" data-modal="reviewsModal">Avaliações</a>
+                <a href="#sobre" class="nav-button modal-trigger" data-modal="sobreModal">Sobre</a>
+                <a href="#servicos" class="nav-button" onclick="window.location.href='treatments.html'">Serviços</a>
+                <a href="#localizacao" class="nav-button modal-trigger" data-modal="localizacaoModal">Localização</a>
+                <a href="#reviews" class="nav-button modal-trigger" data-modal="reviewsModal">Avaliações</a>
                 </div>
             </nav>
+            </div>
         </div>
     </header>
 
@@ -126,7 +130,14 @@
             <div class="container">
                 <h2>Transforme sua beleza em uma obra de arte</h2>
                 <p>Tratamentos personalizados para realçar sua beleza natural</p>
-                <a href="treatments.html" class="cta-button">Ver Tratamentos</a>
+                <div class="hero-buttons">
+                    <a href="#servicos" class="cta-button" onclick="window.location.href='treatments.html'">Ver Tratamentos</a>
+                    <div class="secondary-buttons">
+                        <button class="nav-button modal-trigger" data-modal="sobreModal" type="button">Sobre Nós</button>
+                        <button class="nav-button modal-trigger" data-modal="localizacaoModal">Nossa Localização</button>
+                        <button class="nav-button modal-trigger" data-modal="reviewsModal">Avaliações</button>
+                    </div>
+                </div>
             </div>
         </section>
 
