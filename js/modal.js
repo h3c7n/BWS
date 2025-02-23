@@ -1,86 +1,52 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const initializeModal = (buttonSelector, modalId) => {
-        const modal = document.getElementById(modalId);
-        const button = document.querySelector(buttonSelector);
-        const closeBtn = modal.querySelector('.close-modal');
-        let lastFocusedElement;
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all modal triggers
+    const modalTriggers = document.querySelectorAll('.modal-trigger');
+    const modals = document.querySelectorAll('.modal');
+    const closeButtons = document.querySelectorAll('.close-modal');
 
-        const openModal = (e) => {
+    // Add click event to all trigger buttons
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
             e.preventDefault();
-            lastFocusedElement = document.activeElement;
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            modal.querySelector('.close-modal').focus();
-
-            // Adiciona classe de animação
-            modal.querySelector('.modal-content').classList.add('modal-animate-in');
-
-            // Reinicializa as animações AOS quando o modal de reviews é aberto
-            if (modalId === 'reviewsModal') {
-                setTimeout(() => {
-                    AOS.refresh();
-                }, 100);
+            const modalId = trigger.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             }
-        };
+        });
+    });
 
-        const closeModal = () => {
-            modal.querySelector('.modal-content').classList.add('modal-animate-out');
-            setTimeout(() => {
+    // Close modal when clicking the close button
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal');
+            if (modal) {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                modal.querySelector('.modal-content').classList.remove('modal-animate-out');
-                if (lastFocusedElement) {
-                    lastFocusedElement.focus();
-                }
-            }, 300);
-        };
+            }
+        });
+    });
 
-        // Event Listeners
-        button.addEventListener('click', openModal);
-        closeBtn.addEventListener('click', closeModal);
-
-        // Fechar ao clicar fora do modal
-        modal.addEventListener('click', (e) => {
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        modals.forEach(modal => {
             if (e.target === modal) {
-                closeModal();
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
         });
+    });
 
-        // Fechar com tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                closeModal();
-            }
-        });
-
-        // Trap focus dentro do modal
-        modal.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                const focusableElements = modal.querySelectorAll(
-                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-                );
-                const firstFocusable = focusableElements[0];
-                const lastFocusable = focusableElements[focusableElements.length - 1];
-
-                if (e.shiftKey) {
-                    if (document.activeElement === firstFocusable) {
-                        lastFocusable.focus();
-                        e.preventDefault();
-                    }
-                } else {
-                    if (document.activeElement === lastFocusable) {
-                        firstFocusable.focus();
-                        e.preventDefault();
-                    }
-                }
-            }
-        });
-    };
-
-    // Inicializar modais
-    initializeModal('a[href="#sobre"]', 'sobreModal');
-    initializeModal('a[href="#localizacao"]', 'localizacaoModal');
-    initializeModal('a[href="#reviews"]', 'reviewsModal');
+    // Close modal with ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+    });
 
     // Debug da imagem
     const clinicImage = document.querySelector('.clinic-image');
