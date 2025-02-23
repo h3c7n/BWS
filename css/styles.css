@@ -99,29 +99,6 @@ body.menu-open {
     }
 }
 
-/* Static star positions */
-.static-star:nth-child(1) { top: 5%; left: 10%; }
-.static-star:nth-child(2) { top: 15%; left: 25%; }
-.static-star:nth-child(3) { top: 30%; left: 5%; }
-.static-star:nth-child(4) { top: 40%; left: 70%; }
-.static-star:nth-child(5) { top: 50%; left: 35%; }
-.static-star:nth-child(6) { top: 60%; left: 85%; }
-.static-star:nth-child(7) { top: 75%; left: 60%; }
-.static-star:nth-child(8) { top: 90%; left: 15%; }
-.static-star:nth-child(9) { top: 20%; left: 90%; }
-.static-star:nth-child(10) { top: 80%; left: 45%; }
-.static-star:nth-child(11) { top: 10%; left: 50%; }
-.static-star:nth-child(12) { top: 35%; left: 75%; }
-.static-star:nth-child(13) { top: 65%; left: 20%; }
-.static-star:nth-child(14) { top: 45%; left: 80%; }
-.static-star:nth-child(15) { top: 70%; left: 5%; }
-
-/* Moving star animations */
-.star:nth-child(1) { top: 20%; left: 40%; --direction: -0.5; animation-delay: 0s, 2s; }
-.star:nth-child(2) { top: 60%; left: 80%; --direction: 0.3; animation-delay: 0.2s, 4s; }
-.star:nth-child(3) { top: 40%; left: 10%; --direction: -0.8; animation-delay: 0.4s, 6s; }
-.star:nth-child(4) { top: 80%; left: 30%; --direction: 0.6; animation-delay: 0.6s, 8s; }
-.star:nth-child(5) { top: 10%; left: 70%; --direction: -0.2; animation-delay: 0.8s, 10s; }
 
 .nav-mobile {
     display: none;
