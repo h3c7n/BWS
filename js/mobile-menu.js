@@ -1,80 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const menuButton = document.querySelector('.mobile-menu-button');
-    const mobileMenu = document.querySelector('.nav-mobile');
-    const mobileMenuLinks = document.querySelectorAll('.nav-mobile .nav-button');
-    const body = document.body;
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const navMobile = document.querySelector('.nav-mobile');
+    const menuLinks = document.querySelectorAll('.nav-mobile .nav-button');
 
     // Toggle menu
-    menuButton.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        body.classList.toggle('menu-open');
+    mobileMenuButton?.addEventListener('click', function() {
+        mobileMenuButton.classList.toggle('active');
+        navMobile.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
     });
 
-    // Handle menu item clicks
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (this.classList.contains('modal-trigger')) {
-                e.preventDefault();
-                const modalId = this.getAttribute('data-modal');
-                const modal = document.getElementById(modalId);
-                
-                // Close menu
-                menuButton.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                body.classList.remove('menu-open');
-                
-                // Open modal
-                if (modal) {
-                    modal.style.display = 'block';
-                }
-            } else if (this.getAttribute('href').includes('filhos-tela.html') || 
-                      this.getAttribute('href').includes('treatments.html')) {
-                // Allow direct navigation to these pages
-                return true;
-            } else if (this.getAttribute('href').startsWith('BWS-main/')) {
-                // Let the default navigation happen for project links
-                return true;
-            } else {
-                e.preventDefault();
-                
-                // Get the target section
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                // Close menu
-                menuButton.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                body.classList.remove('menu-open');
-                
-                // Smooth scroll to section
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+    // Close menu when clicking a link
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Verifica se o link é para uma página externa antes de aplicar a lógica do menu
+            if (!this.getAttribute('href').startsWith('http') && !this.getAttribute('href').includes('.html')) {
+                mobileMenuButton.classList.remove('active');
+                navMobile.classList.remove('active');
+                document.body.classList.remove('menu-open');
             }
         });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInside = mobileMenu.contains(event.target) || 
-                            menuButton.contains(event.target);
-        
-        if (!isClickInside && mobileMenu.classList.contains('active')) {
-            menuButton.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            body.classList.remove('menu-open');
-        }
-    });
-
-    // Close menu on window resize (if switching to desktop view)
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
-            menuButton.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            body.classList.remove('menu-open');
-        }
     });
 });
