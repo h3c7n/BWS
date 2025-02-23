@@ -373,6 +373,10 @@ function createCategorySection(category, title) {
 // Função principal de filtro (atualizada)
 function filterTreatments(category) {
     const categoriesContainer = document.querySelector('.treatment-categories');
+    if (!categoriesContainer) {
+        console.warn('Categories container not found');
+        return;
+    }
     
     if (category === 'todos') {
         const categories = [
@@ -413,6 +417,11 @@ function updateURL(category) {
 
 // Inicialização corrigida
 document.addEventListener('DOMContentLoaded', () => {
+    // Only initialize if we're on the treatments page
+    if (!document.querySelector('.treatments-page')) {
+        return;
+    }
+    
     const categoriesContainer = document.querySelector('.treatment-categories');
     if (!categoriesContainer) return; // Evita erros em outras páginas
 
@@ -435,55 +444,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Atualizar inicialização
 document.addEventListener('DOMContentLoaded', () => {
+    // Verify if we're on the treatments page
+    const isTreatmentsPage = document.querySelector('.treatments-page') || 
+                            window.location.pathname.includes('treatments.html');
+    
+    if (!isTreatmentsPage) {
+        return; // Exit if not on treatments page
+    }
+
     // Setup do menu mobile       
     const menuToggle = document.querySelector('.menu-toggle');       
     const navMobile = document.getElementById('nav-mobile');
-    const body = document.body;    
     
-    function toggleMenu() {
-        navMobile.classList.toggle('show');
-        menuToggle.classList.toggle('active');
-        body.classList.toggle('menu-open');
-    }
-    
-    menuToggle?.addEventListener('click', toggleMenu);
-
-    // Setup dos botões
-    document.querySelectorAll('.nav-button, .filter-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const category = button.dataset.category || button.dataset.filter;                        // Atualizar URL sem recarregar            
-            updateURL(category);                        // Filtrar conteúdo            
-            filterTreatments(category);                        // Fechar menu se necessário            
-            if (navMobile.classList.contains('show')) {                
-                toggleMenu();            
-            }        
-        });    
-    });    
-    // Inicialização baseada na URL    
-    const urlParams = new URLSearchParams(window.location.search);    
-    const initialCategory = urlParams.get('category') || 'todos';    
-    filterTreatments(initialCategory);    
-    // Restaurar funcionalidade de filtro nos botões do menu mobile    
-    document.querySelectorAll('.nav-mobile .nav-button').forEach(button => {        
-        if (!button.classList.contains('cta')) {            
-            button.addEventListener('click', (e) => {                
-                e.preventDefault();                
-                const category = button.dataset.category;                
-                filterTreatments(category);                                
-                // Fechar menu mobile                
-                const navMobile = document.getElementById('nav-mobile');                
-                const menuToggle = document.querySelector('.menu-toggle');                
-                navMobile.classList.remove('show');                
-                menuToggle.classList.remove('active');                
-                document.body.classList.remove('menu-open');            
-            });        
+    if (menuToggle && navMobile) {
+        const body = document.body;    
+        
+        function toggleMenu() {
+            navMobile.classList.toggle('show');
+            menuToggle.classList.toggle('active');
+            body.classList.toggle('menu-open');
         }
-    });
+        
+        menuToggle.addEventListener('click', toggleMenu);
+    }
 
-    // Inicializar AOS
-    AOS.init({
-        duration: 800,
-        once: true
-    });
+    // Setup dos botões apenas se existirem
+    const filterButtons = document.querySelectorAll('.nav-button, .filter-button');
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = button.dataset.category || button.dataset.filter;
+                if (!category) return;
+                
+                updateURL(category);
+                filterTreatments(category);
+                
+                // Fechar menu se estiver aberto
+                if (navMobile?.classList.contains('show')) {
+                    toggleMenu();
+                }
+            });
+        });
+    }
+
+    // Inicialização baseada na URL apenas se estivermos na página de tratamentos
+    const categoriesContainer = document.querySelector('.treatment-categories');
+    if (categoriesContainer) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialCategory = urlParams.get('category') || 'todos';
+        filterTreatments(initialCategory);
+    }
+
+    // Inicializar AOS se estiver disponível
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    }
 });
