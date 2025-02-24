@@ -1210,3 +1210,39 @@ body.menu-open {
 .treatments-container {
     padding-top: 100px; /* Adjust this value based on your header height */
 }
+
+/* Footer Partners Styles */
+.footer-partners {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.partner-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.partner-logo {
+    width: auto;
+    height: 50px;
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+}
+
+.partner-logo:hover {
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .partner-logo {
+        height: 40px;
+    }
+}
