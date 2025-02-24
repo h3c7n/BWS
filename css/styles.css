@@ -1040,7 +1040,7 @@ body.menu-open {
     border: none;
     color: var(--text);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease;9
 }
 
 .nav-mobile .nav-button:hover {
@@ -1216,24 +1216,29 @@ body.menu-open {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .partner-logos {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .partner-logo {
+    max-width: 100px; /* Reduced from previous size */
+    height: auto; /* Changed to auto to maintain aspect ratio */
     width: auto;
-    height: 50px;
-    transition: transform 0.3s ease;
-    opacity: 0.8;
+    max-height: 35px; /* New max-height constraint */
+    transition: transform 0.2s ease;
+    opacity: 0.85;
+    object-fit: contain;
 }
 
 .partner-logo:hover {
@@ -1243,6 +1248,10 @@ body.menu-open {
 
 @media (max-width: 768px) {
     .partner-logo {
-        height: 40px;
+        max-height: 30px; /* Slightly smaller on mobile */
+    }
+    
+    .footer-partners {
+        padding: 1rem 0;
     }
 }
